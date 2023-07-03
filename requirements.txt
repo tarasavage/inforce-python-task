@@ -15,10 +15,12 @@ mypy-extensions==1.0.0
 packaging==23.1
 pathspec==0.11.1
 platformdirs==3.8.0
+psycopg2==2.9.6
 pycodestyle==2.10.0
 pyflakes==3.0.1
 PyJWT==2.7.0
 pyrsistent==0.19.3
+python-dotenv==1.0.0
 pytz==2023.3
 PyYAML==6.0
 sqlparse==0.4.4
