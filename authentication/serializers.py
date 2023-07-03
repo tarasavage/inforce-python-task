@@ -8,7 +8,7 @@ class UserSerializer(serializers.ModelSerializer):
         label=_("Confirm Password"),
         style={"input_type": "password"},
         write_only=True,
-        min_length=5
+        min_length=5,
     )
 
     class Meta:

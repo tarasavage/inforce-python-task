@@ -20,8 +20,8 @@ class RestaurantSerializer(serializers.ModelSerializer):
     contact_number = serializers.CharField(
         validators=[
             RegexValidator(
-                regex=r'^\+?1?\d{9,15}$',
-                message='Contact number must be in the format: "+999999999". Up to 15 digits allowed.'
+                regex=r"^\+?1?\d{9,15}$",
+                message='Contact number must be in the format: "+999999999". Up to 15 digits allowed.',
             )
         ]
     )

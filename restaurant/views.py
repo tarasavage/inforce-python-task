@@ -5,7 +5,11 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from restaurant.models import Menu, Restaurant
-from restaurant.serializers import RestaurantSerializer, MenuSerializer, DetailMenuSerializer
+from restaurant.serializers import (
+    RestaurantSerializer,
+    MenuSerializer,
+    DetailMenuSerializer,
+)
 
 
 class CreateRestaurantView(generics.CreateAPIView):
