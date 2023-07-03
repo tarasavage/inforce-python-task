@@ -1,13 +1,21 @@
-from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from django.core.validators import RegexValidator
 
-from authentication.serializers import UserSerializer
-from restaurant.models import Restaurant
+from restaurant.models import Restaurant, Menu
+
+
+class MenuSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Menu
+        fields = ("date", "items")
+
+    def create(self, validated_data):
+        return Menu.objects.create(**validated_data)
 
 
 class RestaurantSerializer(serializers.ModelSerializer):
-    owner = UserSerializer(read_only=True)
+    owner = serializers.SerializerMethodField()
+    menu = MenuSerializer(many=False, read_only=True)
 
     contact_number = serializers.CharField(
         validators=[
@@ -26,12 +34,17 @@ class RestaurantSerializer(serializers.ModelSerializer):
             "contact_number",
             "email",
             "description",
+            "menu",
             "website",
             "capacity",
             "cuisine_type",
             "owner",
+            "menu",
         )
         read_only_fields = ("id", "owner")
+
+    def get_owner(self, obj):
+        return obj.owner.first_name + " " + obj.owner.last_name
 
     def create(self, validated_data):
         request = self.context.get("request")
@@ -39,3 +52,15 @@ class RestaurantSerializer(serializers.ModelSerializer):
         restaurant = Restaurant.objects.create(owner=owner, **validated_data)
 
         return restaurant
+
+
+class DetailMenuSerializer(serializers.ModelSerializer):
+    restaurant_name = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Menu
+        fields = ("date", "items", "restaurant_name")
+        ordering = ["restaurant__name"]
+
+    def get_restaurant_name(self, obj):
+        return obj.restaurant.name
