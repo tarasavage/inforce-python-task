@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "drf_spectacular",
     "authentication",
-    "restaurant",
+    "restaurant"
+    "corsheaders",
 ]
 
 AUTH_USER_MODEL = "authentication.User"
@@ -58,7 +59,10 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = "restaurant_api.urls"
 
