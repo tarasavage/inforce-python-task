@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "drf_spectacular",
     "authentication",
-    "restaurant"
+    "restaurant",
     "corsheaders",
 ]
 
