@@ -1,8 +1,7 @@
 from datetime import date
 
-from rest_framework import generics, status
+from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
 
 from restaurant.models import Menu, Restaurant
 from restaurant.serializers import (

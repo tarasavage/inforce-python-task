@@ -60,7 +60,6 @@ class TestCreateRestaurantView:
             email="asdad@gmail.com",
             first_name="Adsda",
             last_name="asdasd",
-
         )
         api_client.force_authenticate(user=user)
 
